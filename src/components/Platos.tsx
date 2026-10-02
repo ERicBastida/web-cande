@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { Plato } from "./Adornos";
 
 const SERVICIOS = [
@@ -23,18 +23,56 @@ const SERVICIOS = [
   },
 ];
 
-export function Platos() {
-  const seccion = useRef<HTMLElement>(null);
-  const carril = useRef<HTMLUListElement>(null);
+type Servicio = (typeof SERVICIOS)[number];
 
-  // Los platos giran apenas mientras recorrés la sección: como cuando acomodás uno en la mesa.
-  const { scrollYProgress } = useScroll({ target: seccion, offset: ["start end", "end start"] });
-  const { scrollXProgress } = useScroll({ container: carril });
-  const giroY = useTransform(scrollYProgress, [0, 1], [-24, 24]);
-  const giro = useTransform(() => giroY.get() + scrollXProgress.get() * 140);
+/** En escritorio el título ocupa la izquierda, así que todos los platos llegan desde la derecha. */
+function useEscritorio() {
+  const [escritorio, setEscritorio] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 900px)");
+    const actualizar = () => setEscritorio(mq.matches);
+    actualizar();
+    mq.addEventListener("change", actualizar);
+    return () => mq.removeEventListener("change", actualizar);
+  }, []);
+  return escritorio;
+}
+
+/**
+ * Cada plato llega rodando desde un costado mientras bajás y frena en su lugar.
+ * El giro va solo en la loza: el texto y la sombra no rotan, como un plato real apoyado en la mesa.
+ */
+function PlatoServido({ servicio, desdeLaDerecha }: { servicio: Servicio; desdeLaDerecha: boolean }) {
+  const ref = useRef<HTMLLIElement>(null);
+  const quieto = useReducedMotion();
+  const escritorio = useEscritorio();
+  const lado = desdeLaDerecha || escritorio ? 1 : -1;
+
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "center 0.62"] });
+  // Rodar sin patinar: distancia recorrida / radio. 120% del ancho ≈ 140° de giro.
+  const x = useTransform(scrollYProgress, [0, 1], [`${lado * 120}%`, "0%"]);
+  const giro = useTransform(scrollYProgress, [0, 1], [lado * 140, 0]);
+  const texto = useTransform(scrollYProgress, [0.72, 1], [0, 1]);
+  const textoY = useTransform(scrollYProgress, [0.72, 1], [8, 0]);
 
   return (
-    <section ref={seccion} className="seccion platos" id="que-hago" aria-labelledby="platos-titulo">
+    <li ref={ref} className="plato">
+      <motion.div className="plato-mesa" style={quieto ? undefined : { x }}>
+        <motion.div className="plato-loza" style={quieto ? undefined : { rotate: giro }}>
+          <Plato />
+        </motion.div>
+        <motion.div className="plato-contenido" style={quieto ? undefined : { opacity: texto, y: textoY }}>
+          <h3>{servicio.titulo}</h3>
+          <p>{servicio.texto}</p>
+        </motion.div>
+      </motion.div>
+    </li>
+  );
+}
+
+export function Platos() {
+  return (
+    <section className="seccion platos" id="que-hago" aria-labelledby="platos-titulo">
       <div className="contenedor">
         <h2 id="platos-titulo">Cómo te puedo acompañar</h2>
         <p className="seccion-bajada">
@@ -42,17 +80,9 @@ export function Platos() {
         </p>
       </div>
 
-      <ul ref={carril} className="platos-carril" tabIndex={0} aria-label="Servicios">
-        {SERVICIOS.map((s) => (
-          <li key={s.titulo} className="plato">
-            <motion.div className="plato-loza" style={{ rotate: giro }}>
-              <Plato />
-            </motion.div>
-            <div className="plato-contenido">
-              <h3>{s.titulo}</h3>
-              <p>{s.texto}</p>
-            </div>
-          </li>
+      <ul className="platos-mesa" aria-label="Servicios">
+        {SERVICIOS.map((s, i) => (
+          <PlatoServido key={s.titulo} servicio={s} desdeLaDerecha={i % 2 === 1} />
         ))}
       </ul>
     </section>

@@ -387,36 +387,39 @@ a {
   overflow: hidden;
 }
 
-.platos-carril {
+/* Platos servidos en zigzag: uno a cada lado, apenas encimados, como en la mesa. */
+.platos-mesa {
   list-style: none;
-  margin: 36px 0 0;
-  padding: 12px var(--gutter) 28px;
+  margin: 40px 0 0;
+  padding: 0 var(--gutter);
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: min(82vw, 340px);
-  gap: 8px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: var(--gutter);
-  scrollbar-width: none;
-}
-
-.platos-carril::-webkit-scrollbar {
-  display: none;
 }
 
 .plato {
+  width: min(74vw, 340px);
+  justify-self: start;
+}
+
+.plato:nth-child(even) {
+  justify-self: end;
+}
+
+.plato + .plato {
+  margin-top: -14%;
+}
+
+.plato-mesa {
   position: relative;
   aspect-ratio: 1;
-  scroll-snap-align: center;
   display: grid;
   place-items: center;
+  /* La sombra vive acá, fuera del giro: queda siempre abajo, como un plato apoyado. */
+  filter: drop-shadow(0 18px 20px rgba(52, 58, 34, 0.13)) drop-shadow(0 2px 3px rgba(52, 58, 34, 0.08));
 }
 
 .plato-loza {
   position: absolute;
   inset: 0;
-  filter: drop-shadow(0 18px 22px rgba(52, 58, 34, 0.14)) drop-shadow(0 2px 3px rgba(52, 58, 34, 0.08));
 }
 
 .plato-loza svg {
@@ -681,29 +684,31 @@ a {
     max-width: 380px;
   }
 
-  .platos-carril {
-    grid-auto-flow: row;
-    grid-template-columns: repeat(4, 1fr);
-    max-width: calc(var(--ancho) + 80px);
+  /* Título fijo a la izquierda mientras los platos llegan a la derecha. */
+  .platos {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    max-width: var(--ancho);
     margin-inline: auto;
-    gap: 0;
-    overflow: visible;
+    padding-inline: var(--gutter);
+    column-gap: 48px;
+    overflow: clip;
   }
 
-  .plato:nth-child(even) {
-    translate: 0 48px;
+  .platos > .contenedor {
+    padding-inline: 0;
+    align-self: start;
+    position: sticky;
+    top: 140px;
   }
 
-  .plato-contenido {
-    width: 62%;
+  .platos-mesa {
+    margin-top: 0;
+    padding: 0;
   }
 
-  .plato-contenido h3 {
-    font-size: 1.15rem;
-  }
-
-  .plato-contenido p {
-    font-size: 0.8rem;
+  .plato {
+    width: min(100%, 340px);
   }
 
   .pasos {
@@ -733,12 +738,3 @@ a {
   }
 }
 
-@media (min-width: 1200px) {
-  .plato-contenido h3 {
-    font-size: var(--t-m);
-  }
-
-  .plato-contenido p {
-    font-size: var(--t-chico);
-  }
-}
