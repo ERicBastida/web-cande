@@ -1,11 +1,11 @@
 import Image from "next/image";
-import { Broche, Estrella, IconoChat } from "@/components/Adornos";
+import { Broche, Estrella, IconoChat, IconoInstagram } from "@/components/Adornos";
 import { BarraTurno } from "@/components/BarraTurno";
 import { Hero } from "@/components/Hero";
 import { Movimiento } from "@/components/Movimiento";
 import { Platos } from "@/components/Platos";
 import { ruta } from "@/lib/ruta";
-import { INSTAGRAM_URL, INSTAGRAM_USUARIO, WHATSAPP_VISIBLE, whatsappUrl } from "@/lib/contacto";
+import { INSTAGRAM_URL, INSTAGRAM_USUARIO, whatsappUrl } from "@/lib/contacto";
 
 const PASOS = [
   {
@@ -140,7 +140,7 @@ export default function Inicio() {
             </p>
             <a className="boton boton-principal" href={whatsappUrl()} target="_blank" rel="noopener">
               <IconoChat width={20} height={20} />
-              Escribir al {WHATSAPP_VISIBLE}
+              Escribime por WhatsApp
             </a>
             <a className="enlace" href={INSTAGRAM_URL} target="_blank" rel="noopener">
               O seguime en Instagram, @{INSTAGRAM_USUARIO}
@@ -155,6 +155,12 @@ export default function Inicio() {
         </p>
         <p>Candela Mirabete, Licenciada en Nutrición, MP 978.</p>
         <p>Federación, Entre Ríos, Argentina.</p>
+        <p className="pie-credito">
+          Página creada por el Ing. Eric Bastida
+          <a href="https://www.instagram.com/bastidaeric/" target="_blank" rel="noopener" aria-label="Instagram de Eric Bastida">
+            <IconoInstagram width={16} height={16} />
+          </a>
+        </p>
       </footer>
 
       <BarraTurno />
