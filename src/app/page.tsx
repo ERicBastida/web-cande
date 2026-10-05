@@ -4,6 +4,7 @@ import { BarraTurno } from "@/components/BarraTurno";
 import { Hero } from "@/components/Hero";
 import { Movimiento } from "@/components/Movimiento";
 import { Platos } from "@/components/Platos";
+import { Collage } from "@/components/Collage";
 import { Firma } from "@/components/Firma";
 import { Recursos } from "@/components/Recursos";
 import { ruta } from "@/lib/ruta";
@@ -55,10 +56,10 @@ export default function Inicio() {
               <Broche className="quien-broche" />
               <div className="quien-foto-papel">
                 <Image
-                  src={ruta("/img/candela-retrato.webp")}
-                  alt="Retrato de Candela Mirabete sonriendo"
-                  width={694}
-                  height={654}
+                  src={ruta("/img/candela-graduacion.webp")}
+                  alt="Candela el día que se recibió de Licenciada en Nutrición, con una vincha que dice Licenciada y un ramo de flores"
+                  width={820}
+                  height={1025}
                   sizes="(min-width: 900px) 30vw, 78vw"
                 />
               </div>
@@ -112,15 +113,7 @@ export default function Inicio() {
           <div className="contenedor pasos-grilla">
             <div>
               <h2 id="pasos-titulo">Así trabajamos</h2>
-              <figure className="pasos-foto">
-                <Image
-                  src={ruta("/img/candela-antropometria.webp")}
-                  alt="Candela con un plicómetro, la herramienta para medir pliegues en la antropometría"
-                  width={1424}
-                  height={783}
-                  sizes="(min-width: 900px) 40vw, 92vw"
-                />
-              </figure>
+              <Collage />
             </div>
             <ol className="pasos-lista">
               {PASOS.map((p) => (
