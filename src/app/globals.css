@@ -15,7 +15,6 @@
 
   --serif: var(--font-serif), Georgia, serif;
   --sans: var(--font-sans), system-ui, sans-serif;
-  --firma: var(--font-firma), cursive;
 
   /* Escala modular 1.25 sobre 17px */
   --t-chico: 0.875rem;
@@ -170,12 +169,19 @@ a {
   padding: 14px var(--gutter);
 }
 
+/* Firma real del logo, teñida con el color del texto. */
+.firma {
+  display: block;
+  aspect-ratio: 916 / 507;
+  background-color: currentColor;
+  -webkit-mask: var(--firma-url) center / contain no-repeat;
+  mask: var(--firma-url) center / contain no-repeat;
+}
+
 .cabecera-firma {
-  font-family: var(--firma);
-  font-size: 2.6rem;
-  line-height: 1;
-  text-decoration: none;
-  padding-top: 6px;
+  display: block;
+  width: 92px;
+  color: var(--tinta);
 }
 
 .cabecera-nav {
@@ -233,15 +239,14 @@ a {
 
 .hero-firma {
   position: absolute;
-  /* Aire alrededor de la caja: el recorte de la animación no tiene que comerse los trazos altos de la firma. */
-  left: -0.25em;
-  bottom: -6px;
-  padding: 0.4em 0.3em 0 0.25em;
-  font-family: var(--firma);
-  font-size: clamp(5rem, 26vw, 8.5rem);
-  line-height: 1;
+  /* Aire alrededor de la firma: el recorte de la animación no tiene que comerse el halo ni los trazos. */
+  left: -14px;
+  bottom: -10px;
+  width: clamp(210px, 60vw, 340px);
+  padding: 14px;
   color: var(--tinta);
-  text-shadow: 0 0 18px var(--porcelana), 0 0 2px var(--porcelana);
+  /* Halo claro para que la firma se lea sobre la foto */
+  filter: drop-shadow(0 0 6px var(--porcelana)) drop-shadow(0 0 1px var(--porcelana));
   pointer-events: none;
 }
 
@@ -384,6 +389,15 @@ a {
   font-size: var(--t-base);
 }
 
+.quien-lema {
+  font-family: var(--serif);
+  font-size: var(--t-m);
+  line-height: 1.3;
+  color: var(--oliva-oscuro) !important;
+  max-width: 24ch;
+  margin-top: 4px;
+}
+
 /* ---------- Platos (servicios) ---------- */
 
 .platos {
@@ -399,7 +413,7 @@ a {
 }
 
 .plato {
-  width: min(74vw, 340px);
+  width: min(86vw, 370px);
   justify-self: start;
 }
 
@@ -433,19 +447,19 @@ a {
 
 .plato-contenido {
   position: relative;
-  width: 58%;
+  width: 64%;
   text-align: center;
   display: grid;
   gap: 8px;
 }
 
 .plato-contenido h3 {
-  font-size: var(--t-m);
+  font-size: 1.2rem;
 }
 
 .plato-contenido p {
-  font-size: var(--t-chico);
-  line-height: 1.5;
+  font-size: 0.8125rem;
+  line-height: 1.45;
   color: var(--tinta-suave);
 }
 
@@ -516,6 +530,135 @@ a {
   color: var(--tinta-suave);
 }
 
+/* ---------- Guías y recetarios ---------- */
+
+.recursos {
+  padding-top: 40px;
+}
+
+/* Portada como cuadernillo impreso: dos hojas asomando detrás. */
+.portada {
+  position: relative;
+  aspect-ratio: 636 / 900;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow:
+    3px 3px 0 -1px #fff,
+    3px 3px 0 0 #e6e0dc,
+    6px 6px 0 -1px #fff,
+    6px 6px 0 0 #e6e0dc,
+    0 18px 26px -14px rgba(52, 58, 34, 0.35);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.portada img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.recurso-destacado {
+  display: grid;
+  gap: 24px;
+  margin-top: 36px;
+  padding: 26px 22px 26px;
+  border-radius: var(--radio-foto);
+  background: var(--rosa-suave);
+}
+
+.recurso-destacado .portada {
+  width: min(52%, 200px);
+  transform: rotate(-2deg);
+}
+
+.recurso-destacado-texto {
+  display: grid;
+  gap: 10px;
+}
+
+.recurso-destacado h3 {
+  font-size: var(--t-m);
+}
+
+.recurso-destacado p {
+  font-size: var(--t-chico);
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+
+.recurso-destacado .boton {
+  justify-self: start;
+  min-height: 44px;
+  margin-top: 4px;
+}
+
+.recursos-grilla {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px 18px;
+}
+
+.recurso {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.recurso .portada {
+  margin-bottom: 10px;
+}
+
+.recurso:nth-child(odd) .portada {
+  transform: rotate(-1.5deg);
+}
+
+.recurso:nth-child(even) .portada {
+  transform: rotate(1.5deg);
+}
+
+.recurso:hover .portada,
+.recurso:focus-within .portada,
+.recurso-destacado:hover .portada {
+  transform: rotate(0deg) translateY(-4px);
+}
+
+.recurso h3 {
+  font-size: 1.02rem;
+  line-height: 1.25;
+}
+
+.recurso p {
+  font-size: var(--t-chico);
+  line-height: 1.45;
+  color: var(--tinta-suave);
+  flex: 1;
+}
+
+.boton-chico {
+  min-height: 42px;
+  padding: 0 18px;
+  margin-top: 6px;
+  font-size: var(--t-chico);
+  color: var(--oliva-oscuro);
+  border: 1.5px solid var(--oliva-oscuro);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.boton-chico:hover {
+  background: var(--oliva-oscuro);
+  color: var(--porcelana);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portada {
+    transition: none;
+  }
+}
+
 /* ---------- Frase ---------- */
 
 .frase {
@@ -535,10 +678,8 @@ a {
 }
 
 .frase footer {
-  font-family: var(--firma);
-  font-size: 3.4rem;
-  line-height: 1;
-  margin-top: 18px;
+  width: 120px;
+  margin-top: 22px;
   color: var(--oliva-oscuro);
 }
 
@@ -583,9 +724,8 @@ a {
 }
 
 .pie-firma {
-  font-family: var(--firma);
-  font-size: 3rem;
-  line-height: 1.1;
+  width: 110px;
+  margin: 0 auto 14px;
   color: var(--tinta);
 }
 
@@ -694,7 +834,11 @@ a {
   }
 
   .hero-firma {
-    left: calc(-68px - 0.25em);
+    left: -96px;
+  }
+
+  .cabecera-firma {
+    width: 104px;
   }
 
   .hero h1 {
@@ -736,7 +880,7 @@ a {
   }
 
   .plato {
-    width: min(100%, 340px);
+    width: min(100%, 390px);
   }
 
   .pasos {
@@ -755,6 +899,39 @@ a {
 
   .frase {
     padding-block: 120px;
+  }
+
+  .recursos {
+    padding-top: 80px;
+  }
+
+  .recurso-destacado .portada {
+    width: 100%;
+  }
+
+  .recurso-destacado {
+    grid-template-columns: 220px 1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 36px 48px;
+  }
+
+  .recurso-destacado-texto {
+    max-width: 56ch;
+  }
+
+  .recurso-destacado h3 {
+    font-size: var(--t-l);
+  }
+
+  .recurso-destacado p {
+    font-size: var(--t-base);
+  }
+
+  .recursos-grilla {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px;
+    margin-top: 56px;
   }
 
   .barra-turno {

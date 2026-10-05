@@ -22,6 +22,5 @@ Cada push a `main` publica automáticamente en GitHub Pages (`.github/workflows/
 
 ## Pendientes de contenido
 
-- Bio real en la sección "Hola, soy Cande" (`src/app/page.tsx`, hoy en lorem ipsum).
-- Validar textos de servicios (`src/components/Platos.tsx`) y pasos.
+- Validar el texto de Antropometría ISAK 1 (`src/components/Platos.tsx`) y las bajadas de las guías (`src/components/Recursos.tsx`).
 - Fotos originales en buena resolución (`public/img/`).

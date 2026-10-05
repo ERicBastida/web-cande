@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import { Estrella, IconoChat } from "./Adornos";
 import { whatsappUrl } from "@/lib/contacto";
 import { ruta } from "@/lib/ruta";
+import { Firma } from "./Firma";
 
 const suave = [0.22, 1, 0.36, 1] as const;
 
@@ -42,15 +43,15 @@ export function Hero() {
           </motion.span>
         ))}
 
-        <motion.p
+        <motion.div
           className="hero-firma"
           aria-hidden="true"
           initial={{ clipPath: "inset(0 100% 0 0)" }}
           animate={{ clipPath: "inset(0 0% 0 0)" }}
           transition={{ delay: 0.5, duration: 1.4, ease: [0.65, 0, 0.35, 1] }}
         >
-          Candela
-        </motion.p>
+          <Firma />
+        </motion.div>
       </div>
 
       <motion.div

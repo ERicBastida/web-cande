@@ -4,25 +4,27 @@ import { BarraTurno } from "@/components/BarraTurno";
 import { Hero } from "@/components/Hero";
 import { Movimiento } from "@/components/Movimiento";
 import { Platos } from "@/components/Platos";
+import { Firma } from "@/components/Firma";
+import { Recursos } from "@/components/Recursos";
 import { ruta } from "@/lib/ruta";
 import { INSTAGRAM_URL, INSTAGRAM_USUARIO, whatsappUrl } from "@/lib/contacto";
 
 const PASOS = [
   {
-    titulo: "Me escribís",
-    texto: "Por WhatsApp o por mensaje directo en Instagram. Coordinamos día y modalidad.",
+    titulo: "Coordinamos tu turno",
+    texto: "Me escribís por WhatsApp y coordinamos día y horario.",
   },
   {
     titulo: "Primera consulta",
-    texto: "Charlamos de tu rutina, tu historia con la comida y lo que querés lograr. Si suma, hacemos antropometría.",
+    texto: "Conocemos tu rutina, hábitos, objetivos, gustos y necesidades.",
   },
   {
-    titulo: "Tu plan",
-    texto: "Armo un plan a tu medida, con ideas de comidas que de verdad tengas ganas de cocinar.",
+    titulo: "Plan personalizado",
+    texto: "Armo un plan adaptado a vos y a tu día a día.",
   },
   {
     titulo: "Seguimiento",
-    texto: "Nos vemos cada tanto para ajustar, resolver dudas y celebrar lo que vas logrando.",
+    texto: "Realizamos controles según tu necesidad, para acompañar el proceso y hacer los ajustes que sean necesarios.",
   },
 ];
 
@@ -31,7 +33,7 @@ export default function Inicio() {
     <Movimiento>
       <header className="cabecera">
         <a href="#" className="cabecera-firma" aria-label="Candela Mirabete, inicio">
-          Candela
+          <Firma />
         </a>
         <nav aria-label="Secciones" className="cabecera-nav">
           <a href="#quien-soy">Quién soy</a>
@@ -64,16 +66,24 @@ export default function Inicio() {
             </figure>
 
             <div className="quien-texto">
-              <h2 id="quien-titulo">Hola, soy Cande</h2>
-              {/* Texto provisorio: reemplazar con la bio real de Candela. */}
+              <h2 id="quien-titulo">Hola, soy Cande 🩷</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus
-                posuere velit aliquet. Cras mattis consectetur purus sit amet fermentum.
+                Soy Licenciada en Nutrición y mi objetivo es ayudarte a construir una alimentación que se adapte a tu
+                vida.
               </p>
               <p>
-                Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper,
-                maecenas faucibus mollis interdum.
+                Creo en una nutrición simple, flexible y posible, sin reglas imposibles ni planes que duren solo unas
+                semanas.
               </p>
+              <p>
+                Mi trabajo es acompañarte a transformar hábitos, incorporar herramientas y aprender a alimentarte de una
+                manera que puedas sostener en el tiempo.
+              </p>
+              <p>
+                Porque comer mejor no se trata de hacerlo perfecto, sino de encontrar una forma de alimentarte que
+                funcione para vos, tu rutina y tus objetivos.
+              </p>
+              <p className="quien-lema">Nutrición simple. Hábitos reales. Cambios que se sostienen.</p>
               <dl className="quien-datos">
                 <div>
                   <dt>Matrícula</dt>
@@ -123,10 +133,14 @@ export default function Inicio() {
           </div>
         </section>
 
+        <Recursos />
+
         <section className="frase" aria-label="Una frase de Cande">
           <blockquote className="contenedor">
             <p>La vida es muy corta para vivir a dieta y demasiado larga para vivir peleada con la comida.</p>
-            <footer>Cande</footer>
+            <footer>
+              <Firma />
+            </footer>
           </blockquote>
         </section>
 
@@ -150,9 +164,7 @@ export default function Inicio() {
       </main>
 
       <footer className="pie">
-        <p className="pie-firma" aria-hidden="true">
-          Candela
-        </p>
+        <Firma className="pie-firma" />
         <p>Candela Mirabete, Licenciada en Nutrición, MP 978.</p>
         <p>Federación, Entre Ríos, Argentina.</p>
         <p className="pie-credito">

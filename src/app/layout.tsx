@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Figtree, Mrs_Saint_Delafield, Young_Serif } from "next/font/google";
+import { Figtree, Young_Serif } from "next/font/google";
 import "./globals.css";
 
 const serif = Young_Serif({
@@ -11,12 +11,6 @@ const serif = Young_Serif({
 const sans = Figtree({
   variable: "--font-sans",
   subsets: ["latin"],
-});
-
-const firma = Mrs_Saint_Delafield({
-  variable: "--font-firma",
-  subsets: ["latin"],
-  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -31,7 +25,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es-AR" className={`${serif.variable} ${sans.variable} ${firma.variable}`}>
+    <html lang="es-AR" className={`${serif.variable} ${sans.variable}`}>
       <body>{children}</body>
     </html>
   );

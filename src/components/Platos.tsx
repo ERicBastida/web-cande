@@ -7,19 +7,19 @@ import { Plato } from "./Adornos";
 const SERVICIOS = [
   {
     titulo: "Educación alimentaria",
-    texto: "Entender qué comés y por qué, para elegir con libertad y no desde la culpa.",
+    texto: "Te enseño, con herramientas prácticas, a elegir mejor, organizar tu alimentación y crear hábitos que puedas sostener en el tiempo.",
   },
   {
     titulo: "Cambio de hábitos",
-    texto: "Pasos chicos, posibles y tuyos. Lo que suma es lo que podés repetir.",
+    texto: "Cambios simples y realistas en tu alimentación y rutina, para que puedas convertirlos en hábitos y sostenerlos en el tiempo.",
   },
   {
     titulo: "Nutrición infantil",
-    texto: "Acompaño a las familias para que comer en casa sea más simple y más rico.",
+    texto: "Acompaño a las familias a construir una alimentación variada y saludable desde la infancia, respetando los tiempos, gustos y necesidades de cada niño.",
   },
   {
     titulo: "Antropometría ISAK 1",
-    texto: "Mediciones corporales con protocolo internacional para ver tu progreso real.",
+    texto: "Medición de tu composición corporal con protocolo internacional ISAK, para seguir tu progreso más allá de la balanza.",
   },
 ];
 
