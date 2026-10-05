@@ -6,7 +6,7 @@ type Recurso = {
   id: string;
   titulo: string;
   bajada: string;
-  /** Cómo se nombra en el mensaje de WhatsApp: "Hola Cande ⭐️, estoy interesado en …" */
+  /** Cómo se nombra en el mensaje de WhatsApp: "Hola Cande, estoy interesado en …" */
   pedido: string;
 };
 
@@ -45,9 +45,9 @@ const GUIAS: Recurso[] = [
   },
 ];
 
-// Solo emojis "clásicos" (⭐️, ✨): los más nuevos como 💕 llegan rotos (�) en WhatsApp Web y escritorio.
+// Sin emojis: WhatsApp los muestra rotos (�) cuando llegan precargados por el link.
 function pedirPorWhatsapp(r: Recurso) {
-  return whatsappUrl(`Hola Cande ⭐️, estoy interesado en ${r.pedido}`);
+  return whatsappUrl(`Hola Cande, estoy interesado en ${r.pedido}`);
 }
 
 function Portada({ r, prioridad = false }: { r: Recurso; prioridad?: boolean }) {
