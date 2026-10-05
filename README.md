@@ -3,7 +3,7 @@
 Sitio de Candela Mirabete, Lic. en Nutrición (MP 978), Federación, Entre Ríos.
 Next.js + Motion, exportado como sitio estático.
 
-Online: https://ericbastida.github.io/web-cande/
+Online: https://candelamirabete.com
 
 ## Correr en local
 

@@ -24,9 +24,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # El sitio se sirve en la raíz de candelamirabete.com, sin basePath.
       - run: npm run build
-        env:
-          NEXT_PUBLIC_BASE_PATH: /web-cande
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
