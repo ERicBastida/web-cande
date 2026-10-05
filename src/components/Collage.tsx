@@ -21,14 +21,6 @@ const FOTOS = [
     foco: "35% 30%",
     giro: 4,
   },
-  {
-    id: "selfie",
-    src: "/img/trabajo-selfie.webp",
-    alt: "Candela sonriendo en una selfie",
-    epigrafe: "¡Te espero!",
-    foco: "70% 45%",
-    giro: -2,
-  },
 ];
 
 /** Polaroids que caen sobre la mesa una vez, cuando la sección entra en pantalla. */

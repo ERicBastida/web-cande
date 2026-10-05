@@ -56,10 +56,10 @@ export default function Inicio() {
               <Broche className="quien-broche" />
               <div className="quien-foto-papel">
                 <Image
-                  src={ruta("/img/candela-graduacion.webp")}
-                  alt="Candela el día que se recibió de Licenciada en Nutrición, con una vincha que dice Licenciada y un ramo de flores"
-                  width={820}
-                  height={1025}
+                  src={ruta("/img/candela-selfie.webp")}
+                  alt="Candela sonriendo en una selfie"
+                  width={800}
+                  height={1067}
                   sizes="(min-width: 900px) 30vw, 78vw"
                 />
               </div>

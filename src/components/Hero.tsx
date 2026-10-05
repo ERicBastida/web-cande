@@ -20,8 +20,8 @@ export function Hero() {
           transition={{ duration: 1.1, ease: suave }}
         >
           <Image
-            src={ruta("/img/candela-mate.webp")}
-            alt="Candela sonriendo en la mesa, con su mate y platos de comidas caseras alrededor"
+            src={ruta("/img/candela-graduacion.webp")}
+            alt="Candela el día que se recibió de Licenciada en Nutrición, con una vincha que dice Licenciada y un ramo de flores"
             fill
             priority
             sizes="(min-width: 900px) 44vw, 92vw"
